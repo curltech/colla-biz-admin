@@ -6,6 +6,8 @@ export default {
     return {
       remoteDbEntity: new RemoteDbEntity('user'),
       kind: 'query',
+      filter: "",
+      mode: "list",
       queryData: {
         userName: null,
         mobile: null,
