@@ -7,9 +7,15 @@ let auth = {}
 
 auth.login = function (params) {
   // axios.defaults.withCredentials = true
-  return httpClientPool.httpClient.send('/user/Login', params, {
-    loading: "hourglass"
-  })
+  let client = httpClientPool.httpClient
+  if (client) {
+    return client.send('/user/Login', params, {
+      loading: "hourglass"
+    })
+  } else {
+    throw new Error('No httpClient!')
+  }
+
 }
 
 auth.logout = function () {
