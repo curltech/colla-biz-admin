@@ -6,6 +6,8 @@ export default {
     return {
       masterDetailEntity: new MasterDetailEntity('baseCode', 'codeDetail', 'baseCodeId'),
       kind: 'query',
+      filter: "",
+      mode: "list",
       queryData: {
         baseCodeId: null,
         baseCodeType: null,
