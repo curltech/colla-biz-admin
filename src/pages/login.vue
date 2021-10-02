@@ -10,8 +10,8 @@
           q-form(ref="frmLogin" @submit="login" class="q-gutter-md q-pa-md")
             q-input.c-field(filled clearable v-model="loginData.connectAddress" lazy-rules :rules="[val => val && val.length > 0 || $t('Please input connectAddress')]" :label="$t('connectAddress')")
             q-select.c-field(:label="$t('Language')" filled v-model="loginData.language" emit-value map-options :options="languageOptions")
-            q-input.c-field(filled clearable v-model="loginData.credential" :label="$t('Credential')")
-            q-input.c-field(filled clearable v-model="loginData.password" type="password" :label="$t('Password')" lazy-rules)
+            q-input.c-field(filled clearable v-model="loginData.credential_" :label="$t('Credential')")
+            q-input.c-field(filled clearable v-model="loginData.password_" type="password" :label="$t('Password')" lazy-rules)
             div
               q-btn(style="width:100%;" type="submit" color="primary" unelevated :label="$t('Login')" no-caps)
               q-btn(style="width:100%;" no-caps flat :label="$t('Reset')" type="reset" color="primary")

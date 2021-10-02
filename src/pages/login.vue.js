@@ -9,8 +9,8 @@ export default {
       subKind: 'default',
       loginData: {
         connectAddress: '',
-        credential: '13609619603',
-        password: '123456'
+        credential_: '13609619603',
+        password_: '123456'
       },
       registData: {
         name: 'hujs',
@@ -87,6 +87,7 @@ export default {
       config.appParams.language = this.loginData.language
       config.appParams.connectAddress = this.loginData.connectAddress
       config.setAppParams()
+      httpClientPool.get(config.appParams.connectAddress)
     },
     async login() {
       let router = this.$router
