@@ -1,6 +1,9 @@
 import { EntityState, httpClientPool } from 'libcolla'
 import Vue from 'vue'
 
+/**
+ * 对远程数据库访问的基本操作，希望有localdbentity类，相同接口，用于本地数据库
+ */
 export class RemoteDbEntity {
 	private name: string
 	public index: number = 0
