@@ -48,18 +48,6 @@ const menu = [
           { icon: 'role', name: 'role', label: '角色' },
           { icon: 'group', name: 'permission', label: '权限' }
         ]
-      },
-      {
-        icon: 'user', name: 'p2p', label: '分布式节点',
-        children: [
-          {
-            icon: 'user', name: 'dht', label: '路由', path: '/p2p/dht'
-          },
-          { icon: 'role', name: 'p2p', label: 'p2p', path: '/p2p/p2p' },
-          { icon: 'role', name: 'webrtc', label: 'webrtc', path: '/p2p/webrtc' },
-          { icon: 'role', name: 'sfu', label: 'sfu', path: '/p2p/sfu' },
-          { icon: 'role', name: 'websocket', label: 'websocket', path: '/p2p/websocket' }
-        ]
       }
     ]
   }
@@ -70,11 +58,6 @@ routerMenu.menu = menu
 let routers = new Map
 routers.set('user', () => import('@/components/rbac/user'))
 routers.set('basecode', () => import('@/components/basecode/basecode'))
-routers.set('p2p', () => import('@/components/p2p/p2p'))
-routers.set('webrtc', () => import('@/components/p2p/webrtc'))
-routers.set('websocket', () => import('@/components/p2p/websocket'))
-routers.set('sfu', () => import('@/components/p2p/sfu'))
-routers.set('dht', () => import('@/components/p2p/dht'))
 
 
 export const workspaceRouter = {

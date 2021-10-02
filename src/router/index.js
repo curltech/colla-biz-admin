@@ -24,7 +24,7 @@ const Router = new VueRouter({
   routes
 })
 
-const whiteList = ['/login', '/logout', '/403', '/', '/p2p/dht', '/p2p/p2p', '/p2p/sfu', '/p2p/webrtc', '/p2p/websocket'] // 设置白名单，避免死循环
+const whiteList = ['/login', '/logout', '/403', '/', '/workspace','/rbac/user'] // 设置白名单，避免死循环
 
 // 地址栏改变，比$route(to)先触发
 Router.beforeEach(async (to, from, next) => {
