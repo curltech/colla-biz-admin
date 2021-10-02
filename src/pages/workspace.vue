@@ -45,8 +45,7 @@
           round,
           dense,
           flat,
-          color="primary",
-          text-color="c-grey-0",
+          color="white"
           icon="message",
           v-if="$q.screen.gt.sm"
         )
@@ -55,8 +54,7 @@
           round,
           dense,
           flat,
-          color="primary",
-          text-color="c-grey-0",
+          color="white"
           icon="notifications"
         )
           q-badge(color="red", text-color="white", floating) 2
@@ -88,7 +86,7 @@
                   q-icon(name="dashboard")
                 q-item-section(Dashboard)
     q-page-container
-      q-page(class="row no-wrap")
+      q-page.grad(class="row no-wrap")
         div(class="col")
           div(class="full-height")
             q-scroll-area(class="col q-pr-sm full-height" visible style="background-image: url(/login-bg-wl2.jpg) !important;")
