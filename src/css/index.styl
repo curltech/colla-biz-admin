@@ -20,9 +20,19 @@
 }
 
 /////////////////////////////////////////////////////
+.q-drawer {
+  //background-image: url(https://demos.creative-tim.com/vue-material-dashboard/img/sidebar-2.32103624.jpg) !important;
+  background-image: url("/login-bg-wl-7.jpg") !important;
+  background-size: cover !important;
+  background: no-repeat center;
+}
 
-.mainDrawer .q-drawer {
-  border-left: 0px;
+.drawer_normal {
+  background-color: rgba(1, 1, 1, 0.25);
+}
+
+.drawer_dark {
+  background-color: rgba(1, 1, 1, 0.75);
 }
 
 .btnMessage {
@@ -103,12 +113,36 @@ video {
     -webkit-text-size-adjust: 100%;
     -ms-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    background: #f1f1f1 !important;
+  }
+
+  .header_normal {
+    background: linear-gradient(
+      145deg,
+      #19B7C7 15%,
+      #117EED 70%
+    );
+  }
+
+  .header_dark {
+    background: linear-gradient(145deg, #117EED 15%, #19B7C7 70%);
+  }
+
+  .navigation-item {
+    border-radius: 5px;
+  }
+
+  .tab-active {
+    background-color: green;
   }
 
   body.body--light.bgc {
     background: #ffffff !important;
   }
   .body--light {
+    .grad{
+      background: rgba(255, 255, 255, .2);
+    }
     .text-c-white {
       color: #ffffff;
     }
@@ -349,6 +383,9 @@ video {
     background: #1d1d1d !important;
   }
   .body--dark {
+    .grad{
+      background: rgba(0, 0, 0, .2);
+    }
     .text-c-white {
       color: #000000;
     }
