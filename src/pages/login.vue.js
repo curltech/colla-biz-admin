@@ -1,14 +1,28 @@
-import { required } from 'vuelidate/lib/validators'
+import {required} from 'vuelidate/lib/validators'
 import authService from '@/service/auth'
-import { config, httpClientPool, AppParams, myself, myselfPeerService, p2pPeer, peerClientService, PeerMode, iceServer, Language, connectPeerId, connectAddress } from 'libcolla'
-import { colors } from 'quasar'
+import {
+  config,
+  httpClientPool,
+  AppParams,
+  myself,
+  myselfPeerService,
+  p2pPeer,
+  peerClientService,
+  PeerMode,
+  iceServer,
+  Language,
+  connectPeerId,
+  connectAddress
+} from 'libcolla'
+import {colors} from 'quasar'
 import * as cookie from 'tiny-cookie'
+
 export default {
   data() {
     return {
       subKind: 'default',
       loginData: {
-        connectAddress: '',
+        connectAddress: 'https://localhost:9091',
         credential_: '13609619603',
         password_: '123456'
       },
@@ -33,11 +47,11 @@ export default {
           message: '[(#{password})]',
           trigger: 'blur'
         },
-        {
-          min: 6,
-          message: '[(#{password length})]',
-          trigger: 'blur'
-        }
+          {
+            min: 6,
+            message: '[(#{password length})]',
+            trigger: 'blur'
+          }
         ]
       },
       bgNo: 1
@@ -98,13 +112,21 @@ export default {
         return
       }
       this.setting()
-      let response = await authService.login(this.loginData)
-      const user = response.data.user
-      const token = response.data.token
-      if (user && token) {
-        router.push('/workspace')
-      } else {
-        console.error('login fail')
+      try {
+        let response = await authService.login(this.loginData)
+        if (response && response.data) {
+          const user = response.data.user
+          const token = response.data.token
+          if (user) {
+            router.push('/workspace')
+          } else {
+            console.error('login fail')
+          }
+        } else {
+          console.error('login fail')
+        }
+      } catch (err) {
+        console.error(err)
       }
     }
   },

@@ -40,7 +40,7 @@
         q-uploader(ref="upload" :url="uploadAddress" accept=".xlsx"
           :form-fields="uploadFields" :headers="uploadHeaders")
     q-tab-panel(name="edit" class="q-pa-none")
-      q-toolbar.header-toolbar(class="bg-c-grey-1")
+      q-toolbar(class="bg-c-grey-1")
         q-btn.btnIcon(flat round dense icon="arrow_back" @click="kind='query'")
         q-toolbar-title(align="center" class="text-c-grey-10")
       div(class="q-pa-md")
@@ -54,7 +54,7 @@
           div(class="col-4")
             q-input.c-field(filled clearable v-model="current.email" :label="$t('Email')")
     q-tab-panel(name="view" class="q-pa-none")
-      q-toolbar.header-toolbar(class="bg-c-grey-1")
+      q-toolbar(class="bg-c-grey-1")
         q-btn.btnIcon(flat round dense icon="arrow_back" @click="kind='query'")
         q-toolbar-title(align="center" class="text-c-grey-10")
       q-card(class="q-pa-md")

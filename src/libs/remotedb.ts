@@ -123,14 +123,19 @@ export class RemoteDbEntity {
 	save(data: any[]) {
 		let { dataMap, stateData } = this.buildDataMap(data, true)
 		if (stateData.length > 0) {
-			return httpClientPool.httpClient.send('/' + this.name + '/Save', stateData).then((response: any) => {
-				const resData = response.data
-				this.responseData(resData, data, dataMap)
+      let client = httpClientPool.httpClient
+      if (client) {
+        return client.send('/' + this.name + '/Save', stateData).then((response: any) => {
+          const resData = response.data
+          this.responseData(resData, data, dataMap)
 
-				return resData
-			}).catch((error: any) => {
-				console.error(error)
-			})
+          return resData
+        }).catch((error: any) => {
+          console.error(error)
+        })
+      } else {
+        throw new Error('No httpClient!')
+      }
 		}
 	}
 	responseData(resData: any[], data: any[], dataMap: Map<string, any>) {
