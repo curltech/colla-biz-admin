@@ -7,14 +7,16 @@
         q-btn.btnIcon(flat round color="primary" icon="clear" @click="clear")
       div(class="q-pa-md")
         q-form(ref="frmQuery" class="row q-col-gutter-sm")
-          div(class="col-3")
+          div(class="col-4")
+            q-input.c-field(filled clearable v-model="queryData.userId" :label="$t('UserId')")
+          div(class="col-4")
             q-input.c-field(filled clearable v-model="queryData.userName" :label="$t('UserName')")
-          div(class="col-3")
-            q-input.c-field(filled clearable v-model="queryData.status" :label="$t('Status')")
-          div(class="col-3")
+          div(class="col-4")
             q-input.c-field(filled clearable v-model="queryData.mobile" :label="$t('Mobile')")
-          div(class="col-3")
+          div(class="col-4")
             q-input.c-field(filled clearable v-model="queryData.email" :label="$t('Email')")
+          div(class="col-4")
+            q-input.c-field(filled clearable v-model="queryData.status" :label="$t('Status')")
       q-separator(inset)
       div(class="q-pa-md")
         q-table(flat :title="$t('User')" :data="entities" :columns="columns" row-key="entityId" :hide-header="mode === 'grid'"
@@ -46,19 +48,23 @@
       div(class="q-pa-md")
         q-form(ref="frmEdit" class="q-col-gutter-sm row")
           div(class="col-4")
-            q-input.c-field(filled clearable v-model="current.userName" :label="$t('UserName')")
+            q-input.c-field(filled clearable v-model="current.userId" :label="$t('UserId')")
           div(class="col-4")
-            q-input.c-field(filled clearable v-model="current.status" :label="$t('Status')")
+            q-input.c-field(filled clearable v-model="current.userName" :label="$t('UserName')")
           div(class="col-4")
             q-input.c-field(filled clearable v-model="current.mobile" :label="$t('Mobile')")
           div(class="col-4")
             q-input.c-field(filled clearable v-model="current.email" :label="$t('Email')")
+          div(class="col-4")
+            q-input.c-field(filled clearable v-model="current.status" :label="$t('Status')")
     q-tab-panel(name="view" class="q-pa-none")
       q-toolbar(class="bg-c-grey-1")
         q-btn.btnIcon(flat round dense icon="arrow_back" @click="kind='query'")
         q-toolbar-title(align="center" class="text-c-grey-10")
       q-card(class="q-pa-md")
         q-card-section
+          div {{ $t('Id') }} : {{ current.id }}
+          div {{ $t('UserId') }} : {{ current.userId }}
           div {{ $t('UserName') }} : {{ current.userName }}
           div {{ $t('Status') }} : {{ current.status }}
           div {{ $t('Mobile') }} : {{ current.mobile }}

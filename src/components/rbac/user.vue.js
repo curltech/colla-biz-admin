@@ -1,6 +1,8 @@
-import { EntityState } from 'libcolla'
+import {EntityState} from 'libcolla'
 import * as cookie from 'tiny-cookie'
-import { RemoteDbEntity } from '@/libs/remotedb'
+import {RemoteDbEntity} from '@/libs/remotedb'
+import {exportTable} from "@/libs/utils"
+
 export default {
   data() {
     return {
@@ -9,10 +11,10 @@ export default {
       filter: "",
       mode: "list",
       queryData: {
-        userName: null,
-        mobile: null,
-        email: null,
-        status: null
+        userName: '',
+        mobile: '',
+        email: '',
+        status: ''
       },
       queryChanged: true,
       loading: false,
@@ -27,22 +29,15 @@ export default {
       selected: [],
       dlgUpload: false,
       uploadAddress: window.localStorage.getItem('peerAddress') + '/upload',
-      uploadHeaders: [{ name: 'Authorization', value: 'Bearer ' + cookie.get('token') }],
-      uploadFields: [{ name: 'serviceName', value: 'user' }, { name: 'methodName', value: 'Insert' }],
+      uploadHeaders: [{name: 'Authorization', value: 'Bearer ' + cookie.get('token')}],
+      uploadFields: [{name: 'serviceName', value: 'user'}, {name: 'methodName', value: 'Insert'}],
       columns: [
-        {
-          name: 'id',
-          required: false,
-          label: '编号',
-          align: 'left',
-          field: 'id',
-          sortable: true
-        },
-        { name: 'userId', align: 'left', label: '用户编号', field: 'userId', sortable: true },
-        { name: 'userName', label: '用户名', field: 'userName', sortable: true },
-        { name: 'mobile', label: '手机', field: 'mobile' },
-        { name: 'email', label: '邮件', field: 'email' },
-        { name: 'status', label: '状态', field: 'status' }
+        {name: 'id', required: false, label: '编号', align: 'left', field: 'id', sortable: true},
+        {name: 'userId', align: 'left', label: '用户编号', field: 'userId', sortable: true},
+        {name: 'userName', label: '用户名', field: 'userName', sortable: true},
+        {name: 'mobile', label: '手机', field: 'mobile'},
+        {name: 'email', label: '邮件', field: 'email'},
+        {name: 'status', label: '状态', field: 'status'}
       ]
     }
   },
@@ -68,7 +63,7 @@ export default {
     query() {
       this.$refs['frmQuery'].validate().then(success => {
         if (success) {
-          let { orderby, from, limit, count } = this.remoteDbEntity.prepareQuasarPage(this.pagination, this.queryChanged)
+          let {orderby, from, limit, count} = this.remoteDbEntity.prepareQuasarPage(this.pagination, this.queryChanged)
           this.remoteDbEntity.find(this.queryData, orderby, from, limit, count).then(result => {
             if (result) {
               this.data = result.data
@@ -112,6 +107,9 @@ export default {
     },
     download() {
 
+    },
+    exportTable() {
+      exportTable(this.data, this.columns, 'user.csv')
     }
   },
   mounted() {
