@@ -60,4 +60,4 @@
           div {{ $t('Name') }} : {{ current.name }}
           div {{ $t('Kind') }} : {{ current.kind }}
 </template>
-<script src="share.vue.js"/>
+<script src="./share.vue.js"/>

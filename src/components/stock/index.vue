@@ -55,4 +55,4 @@
           div {{ $t('ShareId') }} : {{ current.shareId }}
           div {{ $t('IndexTime') }} : {{ current.indexTime }}
 </template>
-<script src="index.vue.js"/>
+<script src="./index.vue.js"/>
