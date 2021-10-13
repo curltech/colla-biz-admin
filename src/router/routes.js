@@ -58,7 +58,8 @@ routerMenu.menu = menu
 let routers = new Map
 routers.set('user', () => import('@/components/rbac/user'))
 routers.set('basecode', () => import('@/components/basecode/basecode'))
-
+routers.set('share', () => import('@/components/stock/share'))
+routers.set('index', () => import('@/components/stock/index'))
 
 export const workspaceRouter = {
   path: '/workspace',
