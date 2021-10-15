@@ -1,6 +1,7 @@
 import { EntityState, httpClientPool } from 'libcolla'
 import * as cookie from 'tiny-cookie'
 import { MasterDetailEntity } from '@/libs/masterdetail'
+import {exportTable} from "@/libs/utils"
 export default {
   data() {
     return {
@@ -9,11 +10,11 @@ export default {
       filter: "",
       mode: "list",
       queryData: {
-        baseCodeId: null,
-        baseCodeType: null,
-        kind: null,
-        name: null,
-        status: null
+        baseCodeId: '',
+        baseCodeType: '',
+        kind: '',
+        name: '',
+        status: ''
       },
       queryChanged: true,
       loading: false,
@@ -30,15 +31,7 @@ export default {
       uploadAddress: window.localStorage.getItem('peerAddress') + '/upload',
       uploadHeaders: [{ name: 'Authorization', value: 'Bearer ' + cookie.get('token') }],
       uploadFields: [{ name: 'serviceName', value: 'baseCode' }, { name: 'methodName', value: 'Insert' }],
-      columns: [
-        {
-          name: 'id',
-          required: false,
-          label: '编号',
-          align: 'left',
-          field: 'id',
-          sortable: true
-        },
+      columns: [{name: 'id',required: false,label: '编号',align: 'left',field: 'id',sortable: true},
         { name: 'baseCodeId', align: 'left', label: '基本编码编号', field: 'baseCodeId', sortable: true },
         { name: 'baseCodeType', label: '基本编码类型', field: 'baseCodeType', sortable: true },
         { name: 'kind', label: '名称', field: 'kind' },
@@ -47,14 +40,7 @@ export default {
       ],
       detailSelected: [],
       detailColumns: [
-        {
-          name: 'id',
-          required: false,
-          label: '编号',
-          align: 'left',
-          field: 'id',
-          sortable: true
-        },
+        {name: 'id',required: false,label: '编号',align: 'left',field: 'id',sortable: true},
         { name: 'baseCodeId', align: 'left', label: '基本编码编号', field: 'baseCodeId', sortable: true },
         { name: 'codeDetailId', label: '编码编号', field: 'codeDetailId', sortable: true },
         { name: 'label', label: '显示名', field: 'label' },
@@ -172,6 +158,9 @@ export default {
     },
     download() {
 
+    },
+    exportTable() {
+      exportTable(this.data, this.columns, 'user.csv')
     }
   },
   mounted() {
