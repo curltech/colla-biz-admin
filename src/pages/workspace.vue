@@ -1,6 +1,7 @@
 <template lang="pug">
-  q-layout.bg-c-grey-1(view="lHh LpR lFf")
-    q-header.text-c-grey-10(reveal ':class'="$q.dark.isActive ? 'header_dark' : 'header_normal'")
+  q-layout.bg-c-grey-1(view="lHh LpR lFf"
+    style="background-image: url(/login-bg-wl-1.jpg) !important;background-size: cover !important;")
+    q-header.grad.text-c-grey-10(bordered ':class'="$q.dark.isActive ? 'header_dark' : 'header_normal'")
       q-toolbar
         q-btn(
           flat,
@@ -65,31 +66,37 @@
           q-tooltip Account
     q-drawer(
       v-model="leftDrawerOpen",
-      class="left-navigation",
       show-if-above,
-      bordered,
-      side="left",
-      elevated
+      side="left"
     )
-      div(class="full-height" :class="$q.dark.isActive ? 'drawer_dark' : 'drawer_normal'")
-        div(style="height: calc(100% - 117px);padding:10px;")
-          q-toolbar
-            q-avatar
-              img(src="https://cdn.quasar.dev/img/boy-avatar.png")
-          q-toolbar-title(Mayank Patel)
-          hr
-          q-scroll-area(style="height:100%;")
-            q-list(padding)
-              q-item(active-class="tab-active"
-                to="/dashboard" exact class="q-ma-sm navigation-item" v-ripple, clickable)
-                q-item-section(avatar)
-                  q-icon(name="dashboard")
-                q-item-section(Dashboard)
+      div(class="full-height" :class="$q.dark.isActive ? 'drawer_normal' : 'drawer_dark'")
+        q-scroll-area(style="height:100%;")
+          q-list(padding)
+            q-item(active-class="tab-active" to="/rbac/user" exact
+              class="q-ma-sm navigation-item" clickable v-ripple)
+              q-item-section(avatar)
+                q-icon(name="person")
+              q-item-section 用户
+            q-item(active-class="tab-active" to="/basecode/basecode" exact
+            class="q-ma-sm navigation-item" clickable v-ripple)
+              q-item-section(avatar)
+                q-icon(name="code")
+              q-item-section 基本编码
+            q-item(active-class="tab-active" to="/stock/share" exact
+            class="q-ma-sm navigation-item" clickable v-ripple)
+              q-item-section(avatar)
+                q-icon(name="stock")
+              q-item-section 股票
+            q-item(active-class="tab-active" to="/stock/index" exact
+            class="q-ma-sm navigation-item" clickable v-ripple)
+              q-item-section(avatar)
+                q-icon(name="dashboard")
+              q-item-section 股票指标
     q-page-container
       q-page.grad(class="row no-wrap")
         div(class="col")
           div(class="full-height")
-            q-scroll-area(class="col q-pr-sm full-height" visible style="background-image: url(/login-bg-wl2.jpg) !important;")
+            q-scroll-area(class="col q-pr-sm full-height" visible)
               router-view
 </template>
 <script src="./workspace.vue.js"/>
