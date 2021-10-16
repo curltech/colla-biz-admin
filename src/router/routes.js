@@ -50,6 +50,19 @@ const menu = [
         ]
       }
     ]
+  },
+  {
+    icon: 'stock',
+    name: 'stock',
+    label: '股票管理',
+    children: [
+      {
+        icon: 'share', name: 'share', label: '股票代码', path: '/stock/share'
+      },
+      {
+        icon: 'index', name: 'shareIndex', label: '股票指标', path: '/stock/shareIndex'
+      }
+    ]
   }
 ]
 routerMenu.menu = menu
@@ -59,7 +72,7 @@ let routers = new Map
 routers.set('user', () => import('@/components/rbac/user'))
 routers.set('basecode', () => import('@/components/basecode/basecode'))
 routers.set('share', () => import('@/components/stock/share'))
-routers.set('index', () => import('@/components/stock/index'))
+routers.set('shareIndex', () => import('@/components/stock/index'))
 
 export const workspaceRouter = {
   path: '/workspace',

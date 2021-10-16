@@ -1,7 +1,6 @@
 <template lang="pug">
-  q-layout.bg-c-grey-1(view="lHh LpR lFf"
-    style="background-image: url(/login-bg-wl-1.jpg) !important;background-size: cover !important;")
-    q-header.grad.text-c-grey-10(bordered ':class'="$q.dark.isActive ? 'header_dark' : 'header_normal'")
+  q-layout.bg-c-grey-1(view="lHh LpR lFf" ':style'="layoutStyle")
+    q-header.text-c-grey-10(bordered ':class'="$q.dark.isActive ? 'header_dark' : 'header_normal'")
       q-toolbar
         q-btn(
           flat,
@@ -31,6 +30,7 @@
               )
         q-space
         .q-gutter-sm.row.items-center.no-wrap
+        q-btn(flat round icon="photo" color="primary" text-color="white", @click="changeBackground")
         q-btn(
           class="q-mr-xs"
           flat
@@ -39,14 +39,15 @@
           text-color="white",
           @click="$q.dark.toggle()"
           :icon="$q.dark.isActive ? 'nights_stay' : 'wb_sunny'")
-        q-btn(round dense flat color="white" :icon="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
+        q-btn(round dense flat color="primary" text-color="white", :icon="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
           @click="$q.fullscreen.toggle()"
           v-if="$q.screen.gt.sm")
         q-btn(
           round,
           dense,
           flat,
-          color="white"
+          color="primary"
+          text-color="white",
           icon="message",
           v-if="$q.screen.gt.sm"
         )
@@ -55,12 +56,13 @@
           round,
           dense,
           flat,
-          color="white"
+          color="primary"
+          text-color="white",
           icon="notifications"
         )
           q-badge(color="red", text-color="white", floating) 2
           q-tooltip Notifications
-        q-btn(round, flat, color="primary", text-color="c-grey-0")
+        q-btn(round, flat, color="primary", text-color="white")
           q-avatar(size="26px")
             img(src="https://cdn.quasar.dev/img/boy-avatar.png")
           q-tooltip Account
@@ -69,7 +71,7 @@
       show-if-above,
       side="left"
     )
-      div(class="full-height" :class="$q.dark.isActive ? 'drawer_normal' : 'drawer_dark'")
+      div(class="full-height" :class="$q.dark.isActive ? 'drawer_dark' : 'drawer_normal'")
         q-scroll-area(style="height:100%;")
           q-list(padding)
             q-item(active-class="tab-active" to="/rbac/user" exact
@@ -87,7 +89,7 @@
               q-item-section(avatar)
                 q-icon(name="stock")
               q-item-section 股票
-            q-item(active-class="tab-active" to="/stock/index" exact
+            q-item(active-class="tab-active" to="/stock/shareIndex" exact
             class="q-ma-sm navigation-item" clickable v-ripple)
               q-item-section(avatar)
                 q-icon(name="dashboard")
@@ -96,7 +98,7 @@
       q-page.grad(class="row no-wrap")
         div(class="col")
           div(class="full-height")
-            q-scroll-area(class="col q-pr-sm full-height" visible)
+            q-scroll-area(class="col q-pr-none full-height" visible)
               router-view
 </template>
 <script src="./workspace.vue.js"/>

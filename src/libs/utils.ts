@@ -10,7 +10,7 @@ function wrapCsvValue(val: string, formatFn: any) {
   return `"${formatted}"`;
 }
 
-export function exportTable(data: [], columns: [], name: string) {
+export function exportTable(data: any[], columns: any[], name: string) {
   // @ts-ignore
   const content = [columns.map(col => wrapCsvValue(col.label))]
     .concat(
