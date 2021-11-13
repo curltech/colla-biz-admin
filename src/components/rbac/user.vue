@@ -1,7 +1,7 @@
 <template lang="pug">
   q-tab-panels.bg-c-grey-1(v-model="kind" animated transition-prev="slide-right" transition-next="slide-left")
     q-tab-panel(name="query" class="q-pa-none")
-      q-expansion-item(dense-toggle switch-toggle-side
+      q-expansion-item(dense-toggle switch-toggle-side expand-icon-toggle
         icon="perm_identity")
         template(v-slot:header)
           q-item-section()
