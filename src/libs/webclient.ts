@@ -17,8 +17,7 @@ export class WebClient {
           this._websocketClient = websocketPool.get(address)
         }
       } else {
-        httpClientPool.setHttpClient(address)
-        this._httpClient = httpClientPool.httpClient
+        this._httpClient = httpClientPool.getHttpClient(address)
       }
       this.address = address
     } else {
