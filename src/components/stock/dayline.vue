@@ -8,14 +8,16 @@
       div(class="q-pa-md")
         q-form(ref="frmQuery" class="row q-col-gutter-sm")
           div(class="col-4")
-            q-input.c-field(filled clearable v-model="queryData.ts_code" :label="$t('ts_code')")
+            q-input.c-field(filled clearable v-model="queryData.security_code" :label="$t('security_code')")
           div(class="col-4")
-            q-input.c-field(filled clearable v-model="queryData.name" :label="$t('Name')")
+            q-input.c-field(filled clearable v-model="queryData.security_name_abbr" :label="$t('security_name_abbr')")
           div(class="col-4")
-            q-input.c-field(filled clearable v-model="queryData.industry" :label="$t('Industry')")
+            q-input.c-field(filled clearable v-model="queryData.qdate" :label="$t('qdate')")
+          div(class="col-4")
+            q-input.c-field(filled clearable v-model="queryData.ndate" :label="$t('ndate')")
       q-separator(inset)
       div(class="q-pa-md")
-        q-table(flat :title="$t('Share')" :data="entities" :columns="columns" row-key="entityId" :hide-header="mode === 'grid'"
+        q-table(flat :title="$t('Dayline')" :data="entities" :columns="columns" row-key="entityId" :hide-header="mode === 'grid'"
           :grid="mode=='grid'" selection="single" :selected.sync="selected" @row-dblclick="rowDblclick"
           :pagination.sync="pagination" :loading="loading" @request="onPage")
           template(v-slot:top-right="props")
@@ -44,11 +46,13 @@
       div(class="q-pa-md")
         q-form(ref="frmEdit" class="q-col-gutter-sm row")
           div(class="col-4")
-            q-input.c-field(filled clearable v-model="current.ts_code" :label="$t('ts_code')")
+            q-input.c-field(filled clearable v-model="current.security_code" :label="$t('security_code')")
           div(class="col-4")
-            q-input.c-field(filled clearable v-model="current.name" :label="$t('Name')")
+            q-input.c-field(filled clearable v-model="current.security_name_abbr" :label="$t('security_name_abbr')")
           div(class="col-4")
-            q-input.c-field(filled clearable v-model="current.industry" :label="$t('Industry')")
+            q-input.c-field(filled clearable v-model="current.qdate" :label="$t('qdate')")
+          div(class="col-4")
+            q-input.c-field(filled clearable v-model="current.ndate" :label="$t('ndate')")
     q-tab-panel(name="view" class="q-pa-none")
       q-toolbar(class="bg-c-grey-1")
         q-btn.btnIcon(flat round dense icon="arrow_back" @click="kind='query'")
@@ -56,8 +60,9 @@
       q-card(class="q-pa-md")
         q-card-section
           div {{ $t('Id') }} : {{ current.id }}
-          div {{ $t('ts_code') }} : {{ current.ts_code }}
-          div {{ $t('Name') }} : {{ current.name }}
-          div {{ $t('Industry') }} : {{ current.industry }}
+          div {{ $t('security_code') }} : {{ current.security_code }}
+          div {{ $t('security_name_abbr') }} : {{ current.security_name_abbr }}
+          div {{ $t('qdate') }} : {{ current.qdate }}
+          div {{ $t('ndate') }} : {{ current.ndate }}
 </template>
-<script src="./share.vue.js"/>
+<script src="./dayline.vue.js"/>

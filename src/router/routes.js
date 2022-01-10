@@ -60,7 +60,25 @@ const menu = [
         icon: 'share', name: 'share', label: '股票代码', path: '/stock/share'
       },
       {
-        icon: 'index', name: 'shareIndex', label: '股票指标', path: '/stock/shareIndex'
+        icon: 'subscription', name: 'subscription', label: '股票订阅', path: '/stock/subscription'
+      },
+      {
+        icon: 'dayline', name: 'performance', label: '日线', path: '/stock/dayline'
+      },
+      {
+        icon: 'wmqyline', name: 'wmqyline', label: '季度线', path: '/stock/wmqyline'
+      },
+      {
+        icon: 'performance', name: 'performance', label: '业绩', path: '/stock/performance'
+      },
+      {
+        icon: 'express', name: 'express', label: '业绩快报', path: '/stock/express'
+      },
+      {
+        icon: 'forecast', name: 'forecast', label: '业绩预测', path: '/stock/forecast'
+      },
+      {
+        icon: 'qperformance', name: 'qperformance', label: '股票业绩价格', path: '/stock/qperformance'
       }
     ]
   }
@@ -72,7 +90,13 @@ let routers = new Map
 routers.set('user', () => import('@/components/rbac/user'))
 routers.set('basecode', () => import('@/components/basecode/basecode'))
 routers.set('share', () => import('@/components/stock/share'))
-routers.set('shareIndex', () => import('@/components/stock/index'))
+routers.set('subscription', () => import('@/components/stock/subscription'))
+routers.set('dayline', () => import('@/components/stock/dayline'))
+routers.set('wmqyline', () => import('@/components/stock/wmqyline'))
+routers.set('performance', () => import('@/components/stock/performance'))
+routers.set('express', () => import('@/components/stock/express'))
+routers.set('forecast', () => import('@/components/stock/forecast'))
+routers.set('qperformance', () => import('@/components/stock/qperformance'))
 
 export const workspaceRouter = {
   path: '/workspace',

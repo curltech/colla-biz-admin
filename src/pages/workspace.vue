@@ -89,11 +89,41 @@
               q-item-section(avatar)
                 q-icon(name="stock")
               q-item-section 股票
-            q-item(active-class="tab-active" to="/stock/shareIndex" exact
+            q-item(active-class="tab-active" to="/stock/subscription" exact
+            class="q-ma-sm navigation-item" clickable v-ripple)
+              q-item-section(avatar)
+                q-icon(name="stock")
+              q-item-section 订阅
+            q-item(active-class="tab-active" to="/stock/dayline" exact
+            class="q-ma-sm navigation-item" clickable v-ripple)
+              q-item-section(avatar)
+                q-icon(name="stock")
+              q-item-section 日线
+            q-item(active-class="tab-active" to="/stock/wmqyline" exact
+            class="q-ma-sm navigation-item" clickable v-ripple)
+              q-item-section(avatar)
+                q-icon(name="stock")
+              q-item-section 季度线
+            q-item(active-class="tab-active" to="/stock/performance" exact
             class="q-ma-sm navigation-item" clickable v-ripple)
               q-item-section(avatar)
                 q-icon(name="dashboard")
-              q-item-section 股票指标
+              q-item-section 股票业绩
+            q-item(active-class="tab-active" to="/stock/express" exact
+            class="q-ma-sm navigation-item" clickable v-ripple)
+              q-item-section(avatar)
+                q-icon(name="dashboard")
+              q-item-section 股票快报
+            q-item(active-class="tab-active" to="/stock/forecast" exact
+            class="q-ma-sm navigation-item" clickable v-ripple)
+              q-item-section(avatar)
+                q-icon(name="dashboard")
+              q-item-section 股票预测
+            q-item(active-class="tab-active" to="/stock/qperformance" exact
+            class="q-ma-sm navigation-item" clickable v-ripple)
+              q-item-section(avatar)
+                q-icon(name="dashboard")
+              q-item-section 股票业绩价格
     q-page-container
       q-page.grad(class="row no-wrap")
         div(class="col")

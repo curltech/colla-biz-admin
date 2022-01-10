@@ -101,7 +101,7 @@ export default {
       config.appParams.language = this.loginData.language
       config.appParams.connectAddress = this.loginData.connectAddress
       config.setAppParams()
-      httpClientPool.get(config.appParams.connectAddress)
+      httpClientPool.setHttpClient(config.appParams.connectAddress)
     },
     async login() {
       let router = this.$router
