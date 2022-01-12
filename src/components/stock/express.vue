@@ -24,7 +24,7 @@
             q-input(outlined dense debounce="300" v-model="filter" placeholder="Search")
               template(v-slot:append)
                 q-icon(name="search")
-            q-btn(color="primary" flat round dense :icon="mode === 'grid' ? 'list' : 'grid_on'"
+            q-btn(color="primary" flat round dense :icon="mode === 'grid' ? 'grid_on' : 'list'"
               @click="mode = mode === 'grid' ? 'list' : 'grid'; separator = mode === 'grid' ? 'none' : 'horizontal'"
               v-if="!props.inFullscreen")
               q-tooltip(:disable="$q.platform.is.mobile" v-close-popup) {{mode==='grid' ? 'List' : 'Grid'}}
@@ -64,5 +64,30 @@
           div {{ $t('security_name_abbr') }} : {{ current.security_name_abbr }}
           div {{ $t('qdate') }} : {{ current.qdate }}
           div {{ $t('ndate') }} : {{ current.ndate }}
+          div {{ $t('trade_market_code') }} : {{ current.trade_market_code }}
+          div {{ $t('trade_market') }} : {{ current.trade_market }}
+          div {{ $t('security_type_code') }} : {{ current.security_type_code }}
+          div {{ $t('security_type') }} : {{ current.security_type }}
+          div {{ $t('newest_date') }} : {{ current.newest_date }}
+          div {{ $t('report_date') }} : {{ current.report_date }}
+          div {{ $t('basic_eps') }} : {{ current.basic_eps }}
+          div {{ $t('total_operate_income') }} : {{ current.total_operate_income }}
+          div {{ $t('total_operate_income_sq') }} : {{ current.total_operate_income_sq }}
+          div {{ $t('parent_net_profit') }} : {{ current.parent_net_profit }}
+          div {{ $t('parent_net_profit_sq') }} : {{ current.parent_net_profit_sq }}
+          div {{ $t('parent_bvps') }} : {{ current.parent_bvps }}
+          div {{ $t('weight_avg_roe') }} : {{ current.weight_avg_roe }}
+          div {{ $t('yoy_sales') }} : {{ current.yoy_sales }}
+          div {{ $t('yoy_net_profit') }} : {{ current.yoy_net_profit }}
+          div {{ $t('or_last_month') }} : {{ current.or_last_month }}
+          div {{ $t('np_last_month') }} : {{ current.np_last_month }}
+          div {{ $t('publish_name') }} : {{ current.publish_name }}
+          div {{ $t('notice_date') }} : {{ current.notice_date }}
+          div {{ $t('org_code') }} : {{ current.org_code }}
+          div {{ $t('market') }} : {{ current.market }}
+          div {{ $t('is_new') }} : {{ current.is_new }}
+          div {{ $t('data_type') }} : {{ current.data_type }}
+          div {{ $t('ei_time') }} : {{ current.ei_time }}
+          div {{ $t('secu_code') }} : {{ current.secu_code }}
 </template>
 <script src="./express.vue.js"/>

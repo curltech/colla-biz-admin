@@ -63,7 +63,7 @@ const menu = [
         icon: 'subscription', name: 'subscription', label: '股票订阅', path: '/stock/subscription'
       },
       {
-        icon: 'dayline', name: 'performance', label: '日线', path: '/stock/dayline'
+        icon: 'dayline', name: 'dayline', label: '日线', path: '/stock/dayline'
       },
       {
         icon: 'wmqyline', name: 'wmqyline', label: '季度线', path: '/stock/wmqyline'

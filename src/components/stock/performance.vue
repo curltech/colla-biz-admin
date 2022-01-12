@@ -24,7 +24,7 @@
             q-input(outlined dense debounce="300" v-model="filter" placeholder="Search")
               template(v-slot:append)
                 q-icon(name="search")
-            q-btn(color="primary" flat round dense :icon="mode === 'grid' ? 'list' : 'grid_on'"
+            q-btn(color="primary" flat round dense :icon="mode === 'grid' ? 'grid_on' : 'list'"
               @click="mode = mode === 'grid' ? 'list' : 'grid'; separator = mode === 'grid' ? 'none' : 'horizontal'"
               v-if="!props.inFullscreen")
               q-tooltip(:disable="$q.platform.is.mobile" v-close-popup) {{mode==='grid' ? 'List' : 'Grid'}}
@@ -64,5 +64,18 @@
           div {{ $t('security_name_abbr') }} : {{ current.security_name_abbr }}
           div {{ $t('qdate') }} : {{ current.qdate }}
           div {{ $t('ndate') }} : {{ current.ndate }}
+          div {{ $t('basic_eps') }} : {{ current.basic_eps }}
+          div {{ $t('deduct_basic_eps') }} : {{ current.deduct_basic_eps }}
+          div {{ $t('total_operate_income') }} : {{ current.total_operate_income }}
+          div {{ $t('parent_net_profit') }} : {{ current.parent_net_profit }}
+          div {{ $t('weight_avg_roe') }} : {{ current.weight_avg_roe }}
+          div {{ $t('yoy_sales') }} : {{ current.yoy_sales }}
+          div {{ $t('yoy_dedu_np') }} : {{ current.yoy_dedu_np }}
+          div {{ $t('bps') }} : {{ current.bps }}
+          div {{ $t('cfps') }} : {{ current.cfps }}
+          div {{ $t('grossprofit_margin') }} : {{ current.grossprofit_margin }}
+          div {{ $t('or_last_month') }} : {{ current.or_last_month }}
+          div {{ $t('np_last_month') }} : {{ current.np_last_month }}
+          div {{ $t('dividend_yield_ratio') }} : {{ current.dividend_yield_ratio }}
 </template>
 <script src="./performance.vue.js"/>

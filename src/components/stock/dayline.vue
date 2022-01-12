@@ -8,13 +8,9 @@
       div(class="q-pa-md")
         q-form(ref="frmQuery" class="row q-col-gutter-sm")
           div(class="col-4")
-            q-input.c-field(filled clearable v-model="queryData.security_code" :label="$t('security_code')")
+            q-input.c-field(filled clearable v-model="queryData.ts_code" :label="$t('ts_code')")
           div(class="col-4")
-            q-input.c-field(filled clearable v-model="queryData.security_name_abbr" :label="$t('security_name_abbr')")
-          div(class="col-4")
-            q-input.c-field(filled clearable v-model="queryData.qdate" :label="$t('qdate')")
-          div(class="col-4")
-            q-input.c-field(filled clearable v-model="queryData.ndate" :label="$t('ndate')")
+            q-input.c-field(filled clearable v-model="queryData.trade_date" :label="$t('trade_date')")
       q-separator(inset)
       div(class="q-pa-md")
         q-table(flat :title="$t('Dayline')" :data="entities" :columns="columns" row-key="entityId" :hide-header="mode === 'grid'"
@@ -24,7 +20,7 @@
             q-input(outlined dense debounce="300" v-model="filter" placeholder="Search")
               template(v-slot:append)
                 q-icon(name="search")
-            q-btn(color="primary" flat round dense :icon="mode === 'grid' ? 'list' : 'grid_on'"
+            q-btn(color="primary" flat round dense :icon="mode === 'grid' ? 'grid_on' : 'list'"
               @click="mode = mode === 'grid' ? 'list' : 'grid'; separator = mode === 'grid' ? 'none' : 'horizontal'"
               v-if="!props.inFullscreen")
               q-tooltip(:disable="$q.platform.is.mobile" v-close-popup) {{mode==='grid' ? 'List' : 'Grid'}}
@@ -46,13 +42,13 @@
       div(class="q-pa-md")
         q-form(ref="frmEdit" class="q-col-gutter-sm row")
           div(class="col-4")
-            q-input.c-field(filled clearable v-model="current.security_code" :label="$t('security_code')")
+            q-input.c-field(filled clearable v-model="current.ts_code" :label="$t('ts_code')")
           div(class="col-4")
-            q-input.c-field(filled clearable v-model="current.security_name_abbr" :label="$t('security_name_abbr')")
+            q-input.c-field(filled clearable v-model="current.trade_date" :label="$t('trade_date')")
           div(class="col-4")
-            q-input.c-field(filled clearable v-model="current.qdate" :label="$t('qdate')")
+            q-input.c-field(filled clearable v-model="current.open" :label="$t('open')")
           div(class="col-4")
-            q-input.c-field(filled clearable v-model="current.ndate" :label="$t('ndate')")
+            q-input.c-field(filled clearable v-model="current.high" :label="$t('high')")
     q-tab-panel(name="view" class="q-pa-none")
       q-toolbar(class="bg-c-grey-1")
         q-btn.btnIcon(flat round dense icon="arrow_back" @click="kind='query'")
@@ -60,9 +56,33 @@
       q-card(class="q-pa-md")
         q-card-section
           div {{ $t('Id') }} : {{ current.id }}
-          div {{ $t('security_code') }} : {{ current.security_code }}
-          div {{ $t('security_name_abbr') }} : {{ current.security_name_abbr }}
-          div {{ $t('qdate') }} : {{ current.qdate }}
-          div {{ $t('ndate') }} : {{ current.ndate }}
+          div {{ $t('ts_code') }} : {{ current.ts_code }}
+          div {{ $t('trade_date') }} : {{ current.trade_date }}
+          div {{ $t('open') }} : {{ current.open }}
+          div {{ $t('high') }} : {{ current.high }}
+          div {{ $t('open') }} : {{ current.open }}
+          div {{ $t('low') }} : {{ current.low }}
+          div {{ $t('close') }} : {{ current.close }}
+          div {{ $t('vol') }} : {{ current.vol }}
+          div {{ $t('amount') }} : {{ current.amount }}
+          div {{ $t('turnover') }} : {{ current.turnover }}
+          div {{ $t('pre_close') }} : {{ current.pre_close }}
+          div {{ $t('main_net_inflow') }} : {{ current.main_net_inflow }}
+          div {{ $t('small_net_inflow') }} : {{ current.small_net_inflow }}
+          div {{ $t('middle_net_inflow') }} : {{ current.middle_net_inflow }}
+          div {{ $t('large_net_inflow') }} : {{ current.large_net_inflow }}
+          div {{ $t('super_net_inflow') }} : {{ current.super_net_inflow }}
+          div {{ $t('pct_main_net_inflow') }} : {{ current.pct_main_net_inflow }}
+          div {{ $t('pct_small_net_inflow') }} : {{ current.pct_small_net_inflow }}
+          div {{ $t('pct_middle_net_inflow') }} : {{ current.pct_middle_net_inflow }}
+          div {{ $t('pct_large_net_inflow') }} : {{ current.pct_large_net_inflow }}
+          div {{ $t('pct_super_net_inflow') }} : {{ current.pct_super_net_inflow }}
+          div {{ $t('chg_close') }} : {{ current.chg_close }}
+          div {{ $t('pct_chg_open') }} : {{ current.pct_chg_open }}
+          div {{ $t('pct_chg_high') }} : {{ current.pct_chg_high }}
+          div {{ $t('pct_chg_low') }} : {{ current.pct_chg_low }}
+          div {{ $t('pct_chg_close') }} : {{ current.pct_chg_close }}
+          div {{ $t('pct_chg_amount') }} : {{ current.pct_chg_amount }}
+          div {{ $t('pct_chg_vol') }} : {{ current.pct_chg_vol }}
 </template>
 <script src="./dayline.vue.js"/>

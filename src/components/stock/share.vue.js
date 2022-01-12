@@ -18,7 +18,7 @@ export default {
       queryChanged: true,
       loading: false,
       pagination: {
-        sortBy: '',
+        sortBy: 'tscode',
         descending: false,
         page: 1,
         rowsPerPage: 3,

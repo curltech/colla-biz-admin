@@ -8,13 +8,11 @@
       div(class="q-pa-md")
         q-form(ref="frmQuery" class="row q-col-gutter-sm")
           div(class="col-4")
-            q-input.c-field(filled clearable v-model="queryData.security_code" :label="$t('security_code')")
+            q-input.c-field(filled clearable v-model="queryData.user_id" :label="$t('user_id')")
           div(class="col-4")
-            q-input.c-field(filled clearable v-model="queryData.security_name_abbr" :label="$t('security_name_abbr')")
+            q-input.c-field(filled clearable v-model="queryData.user_name" :label="$t('user_name')")
           div(class="col-4")
-            q-input.c-field(filled clearable v-model="queryData.qdate" :label="$t('qdate')")
-          div(class="col-4")
-            q-input.c-field(filled clearable v-model="queryData.ndate" :label="$t('ndate')")
+            q-input.c-field(filled clearable v-model="queryData.ts_code" :label="$t('ts_code')")
       q-separator(inset)
       div(class="q-pa-md")
         q-table(flat :title="$t('Subscription')" :data="entities" :columns="columns" row-key="entityId" :hide-header="mode === 'grid'"
@@ -24,7 +22,7 @@
             q-input(outlined dense debounce="300" v-model="filter" placeholder="Search")
               template(v-slot:append)
                 q-icon(name="search")
-            q-btn(color="primary" flat round dense :icon="mode === 'grid' ? 'list' : 'grid_on'"
+            q-btn(color="primary" flat round dense :icon="mode === 'grid' ? 'grid_on' : 'list'"
               @click="mode = mode === 'grid' ? 'list' : 'grid'; separator = mode === 'grid' ? 'none' : 'horizontal'"
               v-if="!props.inFullscreen")
               q-tooltip(:disable="$q.platform.is.mobile" v-close-popup) {{mode==='grid' ? 'List' : 'Grid'}}
@@ -46,13 +44,11 @@
       div(class="q-pa-md")
         q-form(ref="frmEdit" class="q-col-gutter-sm row")
           div(class="col-4")
-            q-input.c-field(filled clearable v-model="current.security_code" :label="$t('security_code')")
+            q-input.c-field(filled clearable v-model="current.user_id" :label="$t('user_id')")
           div(class="col-4")
-            q-input.c-field(filled clearable v-model="current.security_name_abbr" :label="$t('security_name_abbr')")
+            q-input.c-field(filled clearable v-model="current.user_name" :label="$t('user_name')")
           div(class="col-4")
-            q-input.c-field(filled clearable v-model="current.qdate" :label="$t('qdate')")
-          div(class="col-4")
-            q-input.c-field(filled clearable v-model="current.ndate" :label="$t('ndate')")
+            q-input.c-field(filled clearable v-model="current.ts_code" :label="$t('ts_code')")
     q-tab-panel(name="view" class="q-pa-none")
       q-toolbar(class="bg-c-grey-1")
         q-btn.btnIcon(flat round dense icon="arrow_back" @click="kind='query'")
@@ -60,9 +56,8 @@
       q-card(class="q-pa-md")
         q-card-section
           div {{ $t('Id') }} : {{ current.id }}
-          div {{ $t('security_code') }} : {{ current.security_code }}
-          div {{ $t('security_name_abbr') }} : {{ current.security_name_abbr }}
-          div {{ $t('qdate') }} : {{ current.qdate }}
-          div {{ $t('ndate') }} : {{ current.ndate }}
+          div {{ $t('user_id') }} : {{ current.user_id }}
+          div {{ $t('user_name') }} : {{ current.user_name }}
+          div {{ $t('ts_code') }} : {{ current.ts_code }}
 </template>
 <script src="./subscription.vue.js"/>

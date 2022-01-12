@@ -6,7 +6,7 @@ import {exportTable} from "@/libs/utils"
 export default {
   data() {
     return {
-      remoteDbEntity: new RemoteDbEntity('performance'),
+      remoteDbEntity: new RemoteDbEntity('express'),
       kind: 'query',
       filter: "",
       mode: "list",
@@ -19,7 +19,7 @@ export default {
       queryChanged: true,
       loading: false,
       pagination: {
-        sortBy: '',
+        sortBy: 'qdate desc,securitycode',
         descending: false,
         page: 1,
         rowsPerPage: 3,
@@ -30,7 +30,7 @@ export default {
       dlgUpload: false,
       uploadAddress: window.localStorage.getItem('peerAddress') + '/upload',
       uploadHeaders: [{name: 'Authorization', value: 'Bearer ' + cookie.get('token')}],
-      uploadFields: [{name: 'serviceName', value: 'performance'}, {name: 'methodName', value: 'Insert'}],
+      uploadFields: [{name: 'serviceName', value: 'express'}, {name: 'methodName', value: 'Insert'}],
       columns: [
         {name: 'id', required: false, label: '编号', align: 'left', field: 'id', sortable: true},
         {name: 'security_code', align: 'left', label: '股票编号', field: 'security_code', sortable: true},
@@ -38,18 +38,8 @@ export default {
         {name: 'qdate', align: 'left', label: '业绩季度', field: 'qdate', sortable: true},
         {name: 'ndate', label: '通知季度', field: 'ndate', sortable: true},
         {name: 'basic_eps', align: 'right', label: '每股收益', field: 'basic_eps'},
-        {name: 'deduct_basic_eps', align: 'right', label: '每股扣非收益', field: 'deduct_basic_eps'},
-        {name: 'total_operate_income', align: 'right', label: '营收', field: 'total_operate_income'},
-        {name: 'parent_net_profit', align: 'right', label: '归母净利润', field: 'parent_net_profit'},
-        {name: 'weight_avg_roe', align: 'right', label: '净资产收益率', field: 'weight_avg_roe'},
-        {name: 'yoy_sales', align: 'right', label: '营业收入季度环比增长(%)', field: 'yoy_sales'},
-        {name: 'yoy_dedu_np', align: 'right', label: '扣非净利润同比增长(%)', field: 'yoy_dedu_np'},
-        {name: 'bps', align: 'right', label: '每股净资产', field: 'bps'},
-        {name: 'cfps', align: 'right', label: '每股经营现金流量(元)', field: 'cfps'},
-        {name: 'grossprofit_margin', align: 'right', label: '销售毛利率(%)', field: 'grossprofit_margin'},
-        {name: 'or_last_month', align: 'right', label: '营业收入季度环比增长(%)', field: 'or_last_month'},
-        {name: 'np_last_month', align: 'right', label: '净利润季度环比增长(%)', field: 'np_last_month'},
-        {name: 'dividend_yield_ratio', align: 'right', label: '股息率', field: 'dividend_yield_ratio'},
+        {name: 'yoy_sales', align: 'right', label: '营业收入增长', field: 'yoy_sales'},
+        {name: 'yoy_net_profit', align: 'right', label: '净利润增长', field: 'yoy_net_profit'},
       ]
     }
   },

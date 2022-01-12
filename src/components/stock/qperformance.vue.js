@@ -1,6 +1,7 @@
 import {EntityState, httpClientPool} from 'libcolla'
 import * as cookie from 'tiny-cookie'
 import {exportTable} from "@/libs/utils"
+import * as echarts from 'echarts'
 
 export default {
   data() {
@@ -24,30 +25,16 @@ export default {
       },
       data: [],
       selected: [],
-      dlgUpload: false,
-      uploadAddress: window.localStorage.getItem('peerAddress') + '/upload',
-      uploadHeaders: [{name: 'Authorization', value: 'Bearer ' + cookie.get('token')}],
-      uploadFields: [{name: 'serviceName', value: 'performance'}, {name: 'methodName', value: 'Insert'}],
       columns: [
+        {name: 'id', align: 'left', label: '编号', field: 'id', sortable: true},
         {name: 'ts_code', align: 'left', label: '股票编号', field: 'ts_code', sortable: true},
         {name: 'security_name', label: '股票名', field: 'security_name', sortable: true},
         {name: 'qdate', align: 'left', label: '业绩季度', field: 'qdate', sortable: true},
-        {name: 'ep', label: '市盈率', field: 'ep', sortable: true},
-        {name: 'share_number', align: 'right', label: '股数', field: 'share_number'},
-        {name: 'high', align: 'right', label: '最高价', field: 'high'},
+        {name: 'basic_eps', align: 'right', label: '每股盈利', field: 'basic_eps'},
         {name: 'close', align: 'right', label: '收盘价', field: 'close'},
-        {name: 'pct_chg_high', align: 'right', label: '最高价变化', field: 'pct_chg_high'},
-        {name: 'pct_chg_close', align: 'right', label: '收盘价变化', field: 'pct_chg_close'},
-        {name: 'weight_avg_roe', align: 'right', label: '净资产收益率', field: 'weight_avg_roe'},
-        {name: 'gross_profit_margin', align: 'right', label: '销售毛利率(%)', field: 'gross_profit_margin'},
-        {name: 'parent_net_profit', align: 'right', label: '归母净利润', field: 'parent_net_profit'},
-        {name: 'basic_eps', align: 'right', label: '每股收益', field: 'basic_eps'},
-        {name: 'yoy_sales', align: 'right', label: '营业收入季度环比增长(%)', field: 'yoy_sales'},
+        {name: 'ep', label: '盈利/价格', field: 'ep', sortable: true},
         {name: 'yoy_dedu_np', align: 'right', label: '扣非净利润同比增长(%)', field: 'yoy_dedu_np'},
-        {name: 'or_last_month', align: 'right', label: '营业收入季度环比增长(%)', field: 'or_last_month'},
         {name: 'np_last_month', align: 'right', label: '净利润季度环比增长(%)', field: 'np_last_month'},
-        {name: 'cfps', align: 'right', label: '每股经营现金流量(元)', field: 'cfps'},
-        {name: 'dividend_yield_ratio', align: 'right', label: '股息率', field: 'dividend_yield_ratio'},
       ]
     }
   },
@@ -57,11 +44,6 @@ export default {
         return this.selected[this.selected.length - 1]
       }
       return {}
-    },
-    entities() {
-      return this.data.filter(function (entity) {
-        return entity.state !== EntityState.Deleted
-      })
     }
   },
   methods: {
@@ -72,11 +54,13 @@ export default {
     },
     query() {
       this.$refs['frmQuery'].validate().then(success => {
-        if (success) {
-          return httpClientPool.httpClient.send('/wmqyLine/FindQPerformance', this.queryData).then((response) => {
+        if (success && this.queryData.ts_code!=='') {
+          return httpClientPool.httpClient.send('/wmqyline/FindQPerformance', this.queryData).then((response) => {
             const result = response.data
             if (result) {
-              this.data = result.data
+              this.data = result
+            } else {
+              this.data = []
             }
 
             return result
@@ -89,26 +73,11 @@ export default {
     clear() {
       this.queryData = {}
     },
-    add() {
-      this.remoteDbEntity.add(this.data, this.selected)
-      this.kind = 'edit'
-    },
-    remove() {
-      this.remoteDbEntity.remove(this.data, this.selected)
-    },
-    save() {
-      this.remoteDbEntity.save(this.data)
-    },
-    edit() {
-      this.remoteDbEntity.updateState(this.current, EntityState.Modified)
-      this.kind = 'edit'
-    },
     rowDblclick(evt, row, index) {
       if (this.selected) {
         this.selected.splice(0, this.selected.length)
       }
       this.selected.push(row)
-      this.edit()
     },
     upload() {
 
@@ -118,6 +87,77 @@ export default {
     },
     exportTable() {
       exportTable(this.data, this.columns, 'performance.csv')
+    },
+    showChart(){
+      let lineDom = document.getElementById('lineChart')
+      let lineChart = echarts.init(lineDom)
+
+      // 指定图表的配置项和数据
+      let lineOption = {
+        title: {
+          text: 'ECharts 入门示例'
+        },
+        tooltip: {},
+        legend: {
+          data:['销量']
+        },
+        dataset: {
+          source: this.data
+        },
+        xAxis: {type: 'category'},
+        yAxis: {},
+        series: [{
+          type: 'line',
+          encode: {
+            x: 'qdate',
+            y: 'close'
+          }
+        },{
+          type: 'line',
+          encode: {
+            x: 'qdate',
+            y: 'ep'
+          }
+        },{
+          type: 'line',
+          encode: {
+            x: 'qdate',
+            y: 'yoy_dedu_np'
+          }
+        },]
+      };
+
+      // 使用刚指定的配置项和数据显示图表。
+      lineChart.setOption(lineOption);
+
+      let scatterDom = document.getElementById('scatterChart')
+      let scatterChart = echarts.init(scatterDom)
+
+      // 指定图表的配置项和数据
+      let scatterOption = {
+        title: {
+          text: 'ECharts 入门示例'
+        },
+        tooltip: {},
+        legend: {
+          data:['销量']
+        },
+        dataset: {
+          source: this.data
+        },
+        xAxis: {type: 'category'},
+        yAxis: {},
+        series: [{
+          type: 'scatter',
+          encode: {
+            x: 'ep',
+            y: 'yoy_dedu_np'
+          }
+        }]
+      };
+
+      // 使用刚指定的配置项和数据显示图表。
+      scatterChart.setOption(scatterOption);
     }
   },
   mounted() {
