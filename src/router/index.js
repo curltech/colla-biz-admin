@@ -27,7 +27,7 @@ const Router = new VueRouter({
 const whiteList = ['/login', '/logout', '/403', '/', '/workspace','/rbac/user'
   ,'/basecode/basecode','/stock/share','/stock/subscription','/stock/dayline'
   ,'/stock/wmqyline','/stock/performance','/stock/express','/stock/forecast'
-  ,'/stock/qperformance'
+  ,'/stock/qforecast','/stock/qperformance'
 ] // 设置白名单，避免死循环
 
 // 地址栏改变，比$route(to)先触发

@@ -78,6 +78,9 @@ const menu = [
         icon: 'forecast', name: 'forecast', label: '业绩预测', path: '/stock/forecast'
       },
       {
+        icon: 'qforecast', name: 'qforecast', label: '股票预测价格', path: '/stock/qforecast'
+      },
+      {
         icon: 'qperformance', name: 'qperformance', label: '股票业绩价格', path: '/stock/qperformance'
       }
     ]
@@ -96,6 +99,7 @@ routers.set('wmqyline', () => import('@/components/stock/wmqyline'))
 routers.set('performance', () => import('@/components/stock/performance'))
 routers.set('express', () => import('@/components/stock/express'))
 routers.set('forecast', () => import('@/components/stock/forecast'))
+routers.set('qforecast', () => import('@/components/stock/qforecast'))
 routers.set('qperformance', () => import('@/components/stock/qperformance'))
 
 export const workspaceRouter = {

@@ -15,7 +15,7 @@
             q-input.c-field(filled clearable v-model="queryData.qdate" :label="$t('qdate')")
       q-separator(inset)
       div(class="q-pa-md")
-        q-table(flat :title="$t('QPerformance')" :data="data" :columns="columns" row-key="id" :hide-header="mode === 'grid'"
+        q-table(flat :title="$t('QForecast')" :data="data" :columns="columns" row-key="id" :hide-header="mode === 'grid'"
           :grid="mode=='grid'" selection="single" :selected.sync="selected" @row-dblclick="rowDblclick"
           :pagination.sync="pagination" :loading="loading" @request="onPage")
           template(v-slot:top-right="props")
@@ -62,6 +62,5 @@
         q-toolbar-title(align="center" class="text-c-grey-10")
         q-btn.btnIcon(flat round color="primary" icon="cloud_download" @click="showChart")
       div(id="lineChart" class="q-pa-md" style="width: 100%;height:400px;")
-      div(id="scatterChart" class="q-pa-md" style="width: 100%;height:400px;")
 </template>
-<script src="./qperformance.vue.js"/>
+<script src="./qforecast.vue.js"/>

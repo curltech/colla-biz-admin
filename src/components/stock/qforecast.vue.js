@@ -55,7 +55,7 @@ export default {
     query() {
       this.$refs['frmQuery'].validate().then(success => {
         if (success && this.queryData.ts_code!=='') {
-          return httpClientPool.httpClient.send('/wmqyline/FindQPerformance', this.queryData).then((response) => {
+          return httpClientPool.httpClient.send('/wmqyline/FindQForecast', this.queryData).then((response) => {
             const result = response.data
             if (result) {
               this.data = result
@@ -86,7 +86,7 @@ export default {
 
     },
     exportTable() {
-      exportTable(this.data, this.columns, 'performance.csv')
+      exportTable(this.data, this.columns, 'forecast.csv')
     },
     showChart(){
       let lineDom = document.getElementById('lineChart')
@@ -109,7 +109,7 @@ export default {
           name: '每股利润',
           type: 'line',
           encode: {
-            x: 'ndate',
+            x: 'qdate',
             y: 'basic_eps'
           }
         },{
@@ -123,50 +123,21 @@ export default {
           name: '每股利润/价格',
           type: 'line',
           encode: {
-            x: 'ndate',
+            x: 'qdate',
             y: 'ep'
           }
         },{
           name: '同比归母利润',
           type: 'line',
           encode: {
-            x: 'ndate',
+            x: 'qdate',
             y: 'yoy_dedu_np'
           }
         },]
       };
 
       // 使用刚指定的配置项和数据显示图表。
-      lineChart.setOption(lineOption);
-
-      let scatterDom = document.getElementById('scatterChart')
-      let scatterChart = echarts.init(scatterDom)
-
-      // 指定图表的配置项和数据
-      let scatterOption = {
-        title: {
-          text: 'ECharts 入门示例'
-        },
-        tooltip: {},
-        legend: {
-          data:['销量']
-        },
-        dataset: {
-          source: this.data
-        },
-        xAxis: {type: 'category'},
-        yAxis: {},
-        series: [{
-          type: 'scatter',
-          encode: {
-            x: 'ep',
-            y: 'yoy_dedu_np'
-          }
-        }]
-      };
-
-      // 使用刚指定的配置项和数据显示图表。
-      scatterChart.setOption(scatterOption);
+      lineChart.setOption(lineOption)
     }
   },
   mounted() {

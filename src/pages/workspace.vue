@@ -119,6 +119,11 @@
               q-item-section(avatar)
                 q-icon(name="dashboard")
               q-item-section 股票预测
+            q-item(active-class="tab-active" to="/stock/qforecast" exact
+            class="q-ma-sm navigation-item" clickable v-ripple)
+              q-item-section(avatar)
+                q-icon(name="dashboard")
+              q-item-section 股票预测价格
             q-item(active-class="tab-active" to="/stock/qperformance" exact
             class="q-ma-sm navigation-item" clickable v-ripple)
               q-item-section(avatar)
